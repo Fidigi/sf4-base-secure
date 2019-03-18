@@ -11,25 +11,59 @@
   security_lost_password     ANY      ANY      ANY    /security/lost                     
   security_reset_password    ANY      ANY      ANY    /security/reset/{tokenValue}  
 </pre>
-#### signup
+#### security
+##### signup
 création de compte
 
-#### activate
+##### activate
 Activation de compte en jouant le lien de l'email d'activation
 
-#### signin
-Se connecter à l'application
+##### signin
+Se connecter à l'application via son email ou son user name
 
-#### signout
+config/packages/security.yaml
+<pre>
+        main:
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            user_checker: App\Security\UserChecker
+            logout:
+                path: security_logout
+                target: app_home
+            access_denied_handler: App\Security\Handler\AccessDeniedHandler
+</pre>
+
+app/Repository/UserRepository.php
+<pre>
+public function findOneByUsernameOrEmail($username)
+</pre>
+
+##### signout
 Se déconnecter de l'application
 
-#### lost
+##### lost
 Faire une demande de changement de mot de passe pour un mot de passe perdu. Ce qui envoie un email.
 
-#### reset
+##### reset
 Changement du mot de passe possible en jouant le lien de l'email du "lost"
 
+## Points de configuration :
+
 ### Les roles user
+
+app/Service/UserManager.php
+<pre>
+class UserManager
+{
+    const USER_ROLE_USER = 'ROLE_USER';
+    const USER_ROLE_MOD = 'ROLE_MOD';
+    const USER_ROLE_ADMIN = 'ROLE_ADMIN';
+    
+    ...
+}
+</pre>
 config/packages/security.yaml
 <pre>
     role_hierarchy:
