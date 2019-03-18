@@ -1,8 +1,6 @@
 # sf4-base-secure
 
 ## Creation :
-
-composer create-project symfony/skeleton base-secure
+<pre><code>composer create-project symfony/skeleton base-secure
 cd base-secure
-composer require symfony/web-server-bundle --dev
-
+composer require symfony/web-server-bundle --dev</code></pre>
