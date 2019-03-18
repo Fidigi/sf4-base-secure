@@ -1,4 +1,4 @@
-composer require symfony/web-server-bundle --dev# sf4-base-secure
+# sf4-base-secure
 
 ## Creation :
 
