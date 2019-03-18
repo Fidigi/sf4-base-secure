@@ -88,6 +88,18 @@ class TokenManager
     ...
 }
 </pre>
+
+#### API
+config/packages/security.yaml
+<pre>
+        api:
+            pattern: ^/(graphql|api)/
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\ApiTokenAuthenticator
+</pre>
+
 ## Installation :
 
 ### Creation :
